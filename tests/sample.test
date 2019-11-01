@@ -1,0 +1,37 @@
+#
+# Commands covered: 
+#
+
+#
+# (c) 2019 Alexander Schoepe
+#
+# See the file "license.terms" for information on usage and redistribution
+# of this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#
+
+if {[lsearch [namespace children] ::tcltest] == -1} {
+  package require tcltest 2
+  namespace import -force ::tcltest::*
+  loadTestedCommands
+}
+
+
+package require sample
+
+
+test Sample-1.1 {Sample takes args} -body {
+  Sample
+} -returnCodes error -result "wrong # args: should be \"Sample value\""
+
+test Sample-1.2 {Sample with arg 1} {
+  Sample 1
+} 1
+
+test Sample-1.3 {Sample with arg A} {
+  Sample A
+} A
+
+
+# cleanup
+::tcltest::cleanupTests
+return
